@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" onkeydown="keydownTest(event)">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>键盘按键解密</title>
+</head>
+<body>
+
+  <!-- <input type="text" name="" id="" onkeydown="keydownTest(event)"> -->
+  <!-- 按键启动隐藏设置 -->
+  <script>
+   
+    function Queue() {
+      // 队列长度
+      this.length = 0
+      //  队列元素
+      this.items = []
+      
+      //入队
+      this.enqueue = (item) => {
+        this.length++
+        console.log(this)
+        this.items.push(item)
+        console.log(item)
+      }
+
+      //出队
+       this.dequeue = () => {
+        if(this.length == 0)
+        alert('队列为空')
+        else
+        {
+          this.items.shift()
+          this.length-- 
+        }
+      }
+
+       //字符串输出
+       this.toString = () => {
+        let words = ''
+        for(item of this.items)
+        words += item
+        return words
+      }
+    }
+    let queue = new Queue()
+    const key = '383840403739373966656665'
+    document.addEventListener("keydown",keydown);
+    function keydown(event){          // 传递传递参数event
+            if(queue.length == 12){
+              console.log(queue.toString())
+              queue.dequeue()
+            }
+            queue.enqueue(event.keyCode)      
+            if(queue.toString() == key)
+              alert('请我喝杯奶茶')
+    }
+
+    function keydownTest(event){
+                alert('zijing 你按下了' + event.keyCode);   //检测到键盘按键时调用
+            }
+  </script>
+</body>
+</html>
